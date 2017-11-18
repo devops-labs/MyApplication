@@ -12,7 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
-        abortOnError false
+        abortOnError true
     }
     buildTypes {
         release {
@@ -35,8 +35,4 @@ dependencies {
 dependencyCheck {
     failBuildOnCVSS = 10
     quickQueryTimestamp = false
-    // if (System.env.PROXY_SERVER && System.env.PROXY_PORT) {
-    //     proxy {
-    // server = System.env.PROXY_SERVER
-    //        port = System.env.PROXY_PORT as int
 }
