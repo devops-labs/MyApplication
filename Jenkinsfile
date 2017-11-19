@@ -39,13 +39,13 @@ pipeline {
   //      }
       stage('Lint Checks') {
         steps {
-            sh 'gradle lintDebug'
+            sh './gradlew lintDebug'
             androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/build/reports/lint-results*.xml', unHealthy: ''
             }
         }
       stage('Dependency Check') {
         steps {
-            sh 'gradle dependencyCheckAnalyze'
+            sh './gradlew dependencyCheckAnalyze'
             }
           post {
             always {
@@ -64,7 +64,7 @@ pipeline {
     }
   stage('Deploy to Device') {
           steps{
-        sh 'gradle uninstallDevDebug installDevDebug'
+        sh './gradlew uninstallDevDebug installDevDebug'
                }
             }
       }
