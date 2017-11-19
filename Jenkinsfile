@@ -14,7 +14,7 @@ pipeline {
   stages {
     stage('Build') {
       steps{
- 		sh 'gradle clean assembleDebug'
+ 		sh 'gradlew clean assembleDebug'
 		archiveArtifacts artifacts: '**/build/outputs/apk/**/*debug.apk', fingerprint: true
 		  }
     }
@@ -23,7 +23,7 @@ pipeline {
       parallel {
       stage('Unit Test') {
       	steps {
-            sh 'gradle testDebugUnitTest'
+            sh 'gradlew testDebugUnitTest'
             }
         post {
             always {
