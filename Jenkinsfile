@@ -14,7 +14,7 @@ pipeline {
   stages {
     stage('Build') {
       steps{
- 		sh 'gradle clean assembleDebug'
+ 		sh './gradlew clean assembleDebug'
 		archiveArtifacts artifacts: '**/build/outputs/apk/**/*debug.apk', fingerprint: true
 		  }
     }
@@ -23,7 +23,7 @@ pipeline {
       parallel {
       stage('Unit Test') {
       	steps {
-            sh 'gradle testDebugUnitTest'
+            sh './gradlew testDebugUnitTest'
             }
         post {
             always {
@@ -33,19 +33,19 @@ pipeline {
         }
   //  stage('Checkstyle Checks') {
   //      steps {
-  //          sh 'gradle checkstyle'
+  //          sh './gradlew checkstyle'
   //          checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/reports/checkstyle/checkstyle.xml', unHealthy: ''
   //          }
   //      }
       stage('Lint Checks') {
         steps {
-            sh 'gradle lintDebug'
+            sh './gradlew lintDebug'
             androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/build/reports/lint-results*.xml', unHealthy: ''
             }
         }
       stage('Dependency Check') {
         steps {
-            sh 'gradle dependencyCheckAnalyze'
+            sh './gradlew dependencyCheckAnalyze'
             }
           post {
             always {
@@ -64,7 +64,7 @@ pipeline {
     }
   stage('Deploy to Device') {
           steps{
-        sh 'gradle uninstallDevDebug installDevDebug'
+        sh './gradlew uninstallDevDebug installDevDebug'
                }
             }
       }
