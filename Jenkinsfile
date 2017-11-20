@@ -64,7 +64,7 @@ pipeline {
     }
   stage('Deploy to Device') {
           steps{
-        sh './gradlew uninstallDevDebug installDevDebug'
+        sh './gradlew uninstallDebug installDebug'
                }
             }
       }
